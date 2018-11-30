@@ -25,6 +25,7 @@ static int getdata(char* buf, int max_size);
 %option noyywrap
 
 %%
+#.*\n ;
 %%
 
 extern void yywarning(const char* fmt, ...)

@@ -102,9 +102,8 @@ int main(int argc, char*argv[])
             if (*line==0) continue; // empty line
             yylex_setStreamToMem(line);
             if ( setjmp(gl_throwout)==0 ) {
-                // try: yyparse
+                yyparse();
                 int status;
-                NYI_ftl();
                 // ...
                 // status=...
                 // ...
