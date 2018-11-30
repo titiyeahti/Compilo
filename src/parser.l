@@ -26,6 +26,7 @@ static int getdata(char* buf, int max_size);
 
 %%
 #.*\n ;
+echo\ .* {printf("%s\n", yytext+5);}
 %%
 
 extern void yywarning(const char* fmt, ...)
