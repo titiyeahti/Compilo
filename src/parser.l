@@ -26,9 +26,23 @@ static int getdata(char* buf, int max_size);
 
 %%
 #.*				;
+;				{printf("yytext: %s : token SEP\n", yytext); return SEP;}
 echo\ .* 		{printf("%s\n", yytext+5);}
-quit\  			{return 0;}
-<<EOF>> 		{return 0;}
+quit\  			{printf("yytext: %s : token QUIT\n", yytext); return QUIT;}
+<<EOF>> 		{printf("yytext: %s : token TEOF\n", yytext); return TEOF;}
+[2-9]|1[0-6]	{printf("yytext: %s : token I16\n", yytext); return I16;}
+1[7-9]|[2-9][0-9]+|1[0-9][0-9]+	{printf("yytext: %s : token I216\n", yytext); return I216;}
+0|1				{printf("yytext: %s : token BOOL\n", yytext); return BOOL;}
+\*				{printf("yytext: %s : token BE\n", yytext); return BE;}
+function|fct	{printf("yytext: %s : token FCT\n", yytext); return FCT;}
+def\-set|pts	{printf("yytext: %s : token PTS\n", yytext); return PTS;}
+print|out		{printf("yytext: %s : token PRINT\n", yytext); return PRINT;}
+graph			{printf("yytext: %s : token GRAPHE\n", yytext); return GRAPHE;}
+ls				{printf("yytext: %s : token BE\n", yytext); return LS;}
+[a-zA-Z][0-9a-zA-Z]+	{printf("yytext: %s : token IDENT\n", yytext); return IDENT;}
+[a-z]			{printf("yytext: %s : token VAR\n", yytext); return VAR;}
+[ \t\n] ;
+.		
 %%
 
 extern void yywarning(const char* fmt, ...)

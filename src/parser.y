@@ -53,13 +53,28 @@ static void parser_ls(Tldt*ldt)
 %token PTS
 %token PRINT
 %token GRAPHE
-%token EOF
+%token TEOF
 %token QUIT
+%token LS
 
 %start start
 %%
 /*======================================================================*/
 /*= main rules                                                         =*/
-start :  ;
+start : 
+	  {printf("coucou je ne fais rien");}|
+	  bool_expr {printf("pute1 : %s\n", $$);return 0;}
+;
+bool_expr :
+		    bool_expr '*' bool_expr {printf("%s", $$);}
+		  | bool_expr '+' bool_expr {printf("%s", $$);}
+		  | bool_expr '^' bool_expr {printf("%s", $$);}
+		  | bool_expr '!' '*' bool_expr {printf("%s", $$);}
+		  | bool_expr '!' '+' bool_expr {printf("%s", $$);}
+		  | bool_expr '!' '^' bool_expr {printf("%s", $$);}
+		  | '!' bool_expr {printf("%s", $$);}
+		  | VAR {printf("%s", $$);}
+		  | BOOL {printf("%s", $$);}
+		  ;
 
 %%

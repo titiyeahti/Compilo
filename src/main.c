@@ -104,13 +104,19 @@ int main(int argc, char*argv[])
             if ( setjmp(gl_throwout)==0 ) {
                 int status;
                 // ...
+				// ...
+				// ...
+				// ...
                 status=yyparse();
-				switch (status) {
-					case 0 :
-						return 0;
+				// ...
+				// ..
+				if (yylex() == 0)
+				{
+						printf("syntaxError");
+						return 1;
 				}
-				
-
+				// ..
+				// ...
                 free(line);
 BUG_inf("status=%d TRY\n",status);
                 if ( status==2 ) break; // end instruction
