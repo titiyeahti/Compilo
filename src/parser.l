@@ -25,8 +25,10 @@ static int getdata(char* buf, int max_size);
 %option noyywrap
 
 %%
-#.*\n ;
-echo\ .* {printf("%s\n", yytext+5);}
+#.*				;
+echo\ .* 		{printf("%s\n", yytext+5);}
+quit\  			{return 0;}
+<<EOF>> 		{return 0;}
 %%
 
 extern void yywarning(const char* fmt, ...)

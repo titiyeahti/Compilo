@@ -102,12 +102,15 @@ int main(int argc, char*argv[])
             if (*line==0) continue; // empty line
             yylex_setStreamToMem(line);
             if ( setjmp(gl_throwout)==0 ) {
-                yyparse();
                 int status;
                 // ...
-                // status=...
-                // ...
-                // ...
+                status=yyparse();
+				switch (status) {
+					case 0 :
+						return 0;
+				}
+				
+
                 free(line);
 BUG_inf("status=%d TRY\n",status);
                 if ( status==2 ) break; // end instruction

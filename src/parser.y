@@ -42,7 +42,19 @@ static void parser_ls(Tldt*ldt)
 #endif
 
 %}
-
+%token SEP
+%token BOOL
+%token BE
+%token I16
+%token I216
+%token IDENT
+%token VAR
+%token FCT
+%token PTS
+%token PRINT
+%token GRAPHE
+%token EOF
+%token QUIT
 
 %start start
 %%
