@@ -1,0 +1,54 @@
+TEMPLATE ET STRUCTURE DE DONNEES DU PROJET DE COMPILATION LOGIC
+
+Contenu:
+
+  répertoire src/: les sources de logic.
+     - les headers sont complets.
+     - parser.[yl] sont quasi vides.
+     - main.c      est à trou.
+     - expr-logic-tree.c  est à trou.
+     - les autres  *.c sont complets.
+     - manque un lex pour la complétion contextuelle.
+
+  répertoire test/: des exemples de sources logic.
+
+
+LIVRABLE 1:
+
+  Sources:
+    src/main.c src/parser.[ly] src/top.c src/*.h
+  
+  Pour générer l'exécutable:
+    $ cd src
+    $ bison -d parser.y && flex parser.l
+    $ gcc parser.tab.c lex.yy.c main.c top.c -lreadline
+    $
+
+LIVRABLE 2:
+  
+  Les src/*.[hc] contiennent les sources de la structure de données
+
+   - top.[hc]             : fonction générale (malloc, ensembles, ...)
+   - data.[hc]            : données stockées par le compilateur. 
+   - logic-func.[hc]      : structure représentant une fonction logique.
+   - logic-expr-tree.[hc] : arbre représentant une expression logique.
+   - point-set.[hc]       : structure représentant un sous ensemble de B**N
+                            ( B={0,1} et ** la puissance).
+   - print-option.h       : represente les options des instructions print et
+                            graphe.
+   - var-set.[hc]         : structure représentant un ensemble de variables.
+   - truth-table.[hc]     : structure représentant une expression logique sous
+                            la forme d'une table de vérité.
+
+TROUS:
+
+  Les trous n'empèchent pas de compiler, ils affichent au run-time un message
+  fatal indiquant le fichier et la ligne.
+  De ce fait, il n'est pas nécessaire de les chercher, il suffit de les boucher
+  quand on tombe dedans.
+
+BUGS:
+
+  Il y a surement des bugs dans la structure de données, si vous en trouvé,
+  prière de me les signaler à ivan.auge@ensiie.fr pour que je les transmette
+  aux autres.

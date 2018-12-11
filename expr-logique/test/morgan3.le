@@ -1,0 +1,12 @@
+# morgan à 3 variables
+
+fct m3a = !( a + b + c);
+fct m3b = !a * !b * !c;
+print m3a /df/tt;
+# a b c m3a
+# 0 0 0 1
+print m3b /df /tt;
+# a b c m3b
+# 0 0 0 1
+print m3a == m3b;
+# vrai

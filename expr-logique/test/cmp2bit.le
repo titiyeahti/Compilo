@@ -1,0 +1,35 @@
+echo # comparateur 2 bits (V1)
+echo #  ab == xy
+# comparateur 2 bits
+#  ab == xy
+
+fct cmp2(a,b,x,y) = [
+   1, (0:4 1):3  ];
+print cmp2 ;
+# cmp(a,b,x,y) =
+#   !y*!x*!b*!a + !y*x*!b*a
+# + y*!x*b*!a   + y*x*b*a
+print cmp2 /df /tt;
+# a|b|x|y| cmp2(a,b,x,y)
+# 0|0|0|0| 1
+# 1|1|0|0| 1
+# 0|0|1|1| 1
+# 1|1|1|1| 1
+
+echo
+echo # comparateur 2 bits (V2)
+# comparateur 2 bits (V2)
+#  ab == xy
+
+fct cmpab = [1,0,0,1];
+fct cmpxy = x !^ y;
+fct cmp2 = cmpab * cmpxy;
+print cmp2 ;
+# cmp(a,b,x,y) =
+#  (!b*!a+b*a)*x!^y
+print cmp2 /df /tt;
+# a|b|x|y| cmp2(a,b,x,y)
+# 0|0|0|0| 1
+# 1|1|0|0| 1
+# 0|0|1|1| 1
+# 1|1|1|1| 1

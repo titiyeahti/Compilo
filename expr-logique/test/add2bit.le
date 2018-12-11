@@ -1,0 +1,19 @@
+# additionneur 2 bits
+# ba + ed = f2 f1 f0
+
+fct sum(a,b,r) = a ^ b ^ r;
+fct ret(a,b,r) = a*b + a*r + b*r;
+
+fct f0(b,a,e,d) = sum(a,d,0);
+fct r0(b,a,e,d) = ret(a,d,0);
+fct f1(b,a,e,d) = sum(b,e,r0(b,a,e,d));
+fct r1(b,a,e,d) = ret(b,e,r0(b,a,e,d));
+fct f2(b,a,e,d) = sum(0,0,r1(b,a,e,d));
+print f0 /le;
+# f0(b,a,e,d) = a ^ d ^ 0
+print f0 /pc/le;
+# f0(b,a,e,d) = a ^ d
+print f1 /pc/le;
+# f1(b,a,e,d) = b^e^a*d
+print f2 /pc/le;
+# f2(b,a,e,d) = b*e+b*a*d+e*a*d
